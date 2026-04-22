@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - Mi Sitio Web</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../src/styles/styleP.css">
+    <script src="../src/scripts/scriptP.js"></script>
+    <script src="../src/scripts/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <!-- Navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../index.html">
+                <strong>Mi Sitio Web</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="servicios.html">Servicios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="productos.html">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contactos.html">Contactos</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main>
+        <section class="hero-section text-white text-center py-5">
+            <div class="container">
+                <h1 class="display-4 fw-bold mb-4">¡Bienvenido a la seccion de productos!</h1>
+                <p class="lead mb-4">Descubre nuestros productos disponibles de alta tecnologia </p>
+                
+            </div>
+        </section>
+
+        <!-- Sección de Características -->
+        <section class="features py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <img src="../src/images/mackbook 13 pro.png" alt="MacBook Pro 13" class="img-fluid mb-3">
+                                <h5 class="card-title">MacBook Pro 13</h5>
+
+                                <p class="card-text">La MacBook Pro de 13 pulgadas (modelos M1/M2) es un portátil compacto y potente de alto rendimiento, ideal para profesionales en movimiento. Destaca por su chip de Apple (M1 o M2), pantalla Retina de 13.3", hasta 20 horas de batería, sistema de refrigeración activa, Magic Keyboard, Touch Bar y Touch ID. </p>
+                                <button class="btn btn-primary btn-lg" onclick="mostrarMensaje()">Ver más</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <img src="../src/images/apple_vision_pro.webp" alt="Apple Vision Pro" class="img-fluid mb-3">
+                                <h5 class="card-title">Apple Vision Pro</h5>
+                                <p class="card-text">El Apple Vision Pro es un ordenador espacial avanzado que fusiona el contenido digital con el entorno físico (realidad mixta), permitiendo interactuar mediante ojos, manos y voz sin mandos físicos. Presenta un diseño de aluminio y vidrio curvo, alta resolución, y utiliza visionOS para aplicaciones de trabajo y entretenimiento inmersivo</p>
+                                <button class="btn btn-primary btn-lg" onclick="mostrarMensaje()">Ver más</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <img src="../src/images/iphone_17.jpg" alt="Iphone 17" class="img-fluid mb-3">
+                                <h5 class="card-title">Iphone 17</h5>
+                                <p class="card-text">El Apple iPhone 17 (2025) presenta una pantalla OLED LTPO de 6.3 pulgadas con ProMotion de 120Hz, chip A19, 8GB de RAM y 256GB de almacenamiento base. Destaca su doble cámara trasera de 48MP (principal y gran angular) y una nueva cámara frontal de 18MP con Center Stage, además de mejoras en batería y carga rápida de 40W.</p>
+                                <button class="btn btn-primary btn-lg" onclick="mostrarMensaje()">Ver más</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+    <!-- Bootstrap JS -->
+    
+    <!-- Sección de Testimonios -->
+    <section class="testimonials bg-light py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Lo que dicen nuestros clientes</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card border-0 shadow-sm p-4">
+                        <blockquote class="blockquote mb-0">
+                            <p>"La MacBook Pro ha transformado mi flujo de trabajo creativo. La potencia del chip M2 es simplemente increíble."</p>
+                            <footer class="blockquote-footer mt-2">Carlos Rodríguez, <cite title="Source Title">Diseñador Gráfico</cite></footer>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card border-0 shadow-sm p-4">
+                        <blockquote class="blockquote mb-0">
+                            <p>"El iPhone 17 superó todas mis expectativas, especialmente la calidad de la cámara en condiciones de poca luz."</p>
+                            <footer class="blockquote-footer mt-2">Ana Martínez, <cite title="Source Title">Fotógrafa</cite></footer>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p class="mb-0">&copy; 2026 Mi Sitio Web. Todos los derechos reservados.</p>
+            <small>Desarrollado con HTML, CSS, JavaScript y Bootstrap</small>
+        </div>
+    </footer>
+
+</body>
+</html>
