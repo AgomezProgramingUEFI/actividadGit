@@ -155,3 +155,109 @@ main {
         width: 100%;
     }
 }
+
+/* SECCIÓN DE CONTACTOS - INICIO */
+.contact-section {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    padding: 4rem 0;
+    animation: fadeInUp 1s ease-in;
+}
+
+.contact-form-container {
+    background-color: #fff;
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    border-top: 4px solid var(--primary-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), #0056b3);
+}
+
+.contact-form-container h1 {
+    color: var(--dark-color);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-form-container .lead {
+    color: #6c757d;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    position: relative;
+    z-index: 1;
+}
+
+#contactForm .form-label {
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+#contactForm .input-group-text {
+    background-color: var(--light-color);
+    border: 1px solid #ced4da;
+    color: var(--primary-color);
+    position: relative;
+    z-index: 1;
+}
+
+#contactForm .form-control {
+    border: 1px solid #ced4da;
+    border-radius: 0 6px 6px 0;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+#contactForm .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15);
+}
+
+#contactForm .input-group .form-control {
+    border-left: none;
+}
+
+#contactForm .input-group .form-control:focus {
+    border-left: 1px solid var(--primary-color);
+}
+
+#contactForm .btn-primary {
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+    padding: 0.75rem 2rem;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+#contactForm .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+/* SECCIÓN DE CONTACTOS - FIN */
