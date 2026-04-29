@@ -33,7 +33,7 @@ body {
 
 /* Hero Section */
 .hero-section {
-    background: linear-gradient(135deg, #ea6666 0%, #ffdf4e 100%);
+    background: linear-gradient(135deg, #57C785 0%, #090979 100%, #00D4FF 100%);
     min-height: 400px;
     display: flex;
     align-items: center;
