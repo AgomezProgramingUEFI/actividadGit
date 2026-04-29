@@ -3,20 +3,392 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contactos - Mi Sitio Web</title>
+    <title>Contactos - TechSolutions</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../src/styles/style.css">
+    <style>
+        :root {
+            --bg-dark: #0a0e17;
+            --bg-card: #111827;
+            --bg-card-hover: #1a2332;
+            --accent-green: #57C785;
+            --accent-blue: #090979;
+            --accent-cyan: #00D4FF;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border-color: #1e293b;
+            --gradient-main: linear-gradient(135deg, #57C785 0%, #090979 100%, #00D4FF 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(10, 14, 23, 0.95) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text-primary) !important;
+        }
+
+        .navbar-brand span {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
+            color: var(--text-secondary) !important;
+            font-weight: 500;
+            padding: 0.5rem 1.2rem !important;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent-cyan) !important;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 6rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--gradient-main);
+            opacity: 0.07;
+            pointer-events: none;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.12) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .page-header-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .page-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(87, 199, 133, 0.1);
+            border: 1px solid rgba(87, 199, 133, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--accent-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .page-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+        }
+
+        .page-title .highlight {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-description {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 2rem 0 6rem;
+        }
+
+        /* Contact Info Cards */
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.75rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .info-card:hover {
+            border-color: rgba(87, 199, 133, 0.3);
+            background: var(--bg-card-hover);
+            transform: translateY(-4px);
+        }
+
+        .info-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .info-icon.green  { background: rgba(87, 199, 133, 0.12); color: var(--accent-green); }
+        .info-icon.cyan   { background: rgba(0, 212, 255, 0.12);  color: var(--accent-cyan);  }
+        .info-icon.purple { background: rgba(124, 124, 255, 0.12); color: #7c7cff; }
+
+        .info-text h5 {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+        }
+
+        .info-text p {
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin: 0;
+            font-weight: 600;
+        }
+
+        /* Form Card */
+        .form-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: var(--gradient-main);
+        }
+
+        .form-card h2 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-card .subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        /* Form Controls */
+        .form-label {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        .form-control {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            border-radius: 12px;
+            padding: 0.875rem 1rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control::placeholder {
+            color: #475569;
+        }
+
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+            color: var(--text-primary);
+            outline: none;
+        }
+
+        .input-group-text {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            border-right: none;
+            color: var(--text-secondary);
+            border-radius: 12px 0 0 12px;
+            padding: 0.875rem 1rem;
+        }
+
+        .input-group .form-control {
+            border-left: none;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .input-group:focus-within .input-group-text {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        .input-group:focus-within .form-control {
+            border-color: var(--accent-cyan);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        /* Submit Button */
+        .btn-submit {
+            background: var(--gradient-main);
+            border: none;
+            padding: 1rem 3rem;
+            font-weight: 600;
+            border-radius: 50px;
+            color: white;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            width: 100%;
+            letter-spacing: 0.02em;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(87, 199, 133, 0.3);
+            color: white;
+        }
+
+        .btn-submit:active {
+            transform: translateY(-1px);
+        }
+
+        /* Success Alert */
+        .alert-success-custom {
+            background: rgba(87, 199, 133, 0.1);
+            border: 1px solid rgba(87, 199, 133, 0.3);
+            color: var(--accent-green);
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #050810;
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+        }
+
+        footer strong {
+            color: var(--text-primary);
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .fade-in { opacity: 1; transform: none; transition: none; }
+        }
+
+        @media (max-width: 768px) {
+            .form-card { padding: 2rem 1.5rem; }
+        }
+    </style>
 </head>
 <body>
+
     <!-- Navegación -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container-fluid px-4">
             <a class="navbar-brand" href="../index.html">
-                <strong>Mi Sitio Web</strong>
+                Tech<span>Solutions</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -38,64 +410,171 @@
         </div>
     </nav>
 
-    <!-- Contenido Principal -->
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container px-4">
+            <div class="page-header-content fade-in">
+                <div class="page-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    Estamos para ayudarte
+                </div>
+                <h1 class="page-title">Hablemos sobre tu <span class="highlight">próximo proyecto</span></h1>
+                <p class="page-description">
+                    ¿Tienes una idea? Cuéntanosla. Nuestro equipo está listo para convertirla en realidad.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
     <main>
-        <!-- SECCIÓN DE CONTACTOS - INICIO -->
-        <section class="contact-section py-5">
-            <div class="container">
+        <section class="contact-section">
+            <div class="container px-4">
+
+                <!-- Info cards row -->
+                <div class="row g-4 mb-5 fade-in">
+                    <div class="col-md-4">
+                        <div class="info-card">
+                            <div class="info-icon green">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.45 2 2 0 0 1 3.61 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                            </div>
+                            <div class="info-text">
+                                <h5>Teléfono</h5>
+                                <p>+57 300 000 0000</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="info-card">
+                            <div class="info-icon cyan">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                            <div class="info-text">
+                                <h5>Correo</h5>
+                                <p>hola@techsolutions.co</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="info-card">
+                            <div class="info-icon purple">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </div>
+                            <div class="info-text">
+                                <h5>Ubicación</h5>
+                                <p>Bogotá, Colombia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
-                        <div class="contact-form-container">
-                            <h1 class="text-center">Contáctanos</h1>
-                            <p class="lead text-center">¿Tienes alguna pregunta o necesitas más información? Completa el formulario a continuación y nos pondremos en contacto contigo pronto.</p>
-                            
-                            <!-- Formulario de Contacto -->
-                            <form id="contactForm">
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Nombre Completo</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="bi bi-person"></i></span>
-                                        <input type="text" class="form-control" id="name" placeholder="Ingresa tu nombre completo" required>
+                        <div class="form-card fade-in">
+                            <h2>Envíanos un mensaje</h2>
+                            <p class="subtitle">Completa el formulario y te responderemos en menos de 24 horas.</p>
+
+                            <div class="alert-success-custom mb-4" id="successAlert">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="me-2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                ¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.
+                            </div>
+
+                            <form id="contactForm" novalidate>
+                                <div class="row g-4">
+                                    <div class="col-md-6">
+                                        <label for="name" class="form-label">Nombre Completo</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                    <circle cx="12" cy="7" r="4"></circle>
+                                                </svg>
+                                            </span>
+                                            <input type="text" class="form-control" id="name"
+                                                placeholder="Tu nombre completo" required>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Correo Electrónico</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-                                        <input type="email" class="form-control" id="email" placeholder="tuemail@ejemplo.com" required>
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Correo Electrónico</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                                </svg>
+                                            </span>
+                                            <input type="email" class="form-control" id="email"
+                                                placeholder="tuemail@ejemplo.com" required>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="phone" class="form-label">Teléfono</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="bi bi-telephone"></i></span>
-                                        <input type="tel" class="form-control" id="phone" placeholder="Tu número de teléfono" required>
+                                    <div class="col-12">
+                                        <label for="phone" class="form-label">Teléfono</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.65 3.45 2 2 0 0 1 3.61 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                                </svg>
+                                            </span>
+                                            <input type="tel" class="form-control" id="phone"
+                                                placeholder="+57 300 000 0000" required>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="message" class="form-label">Mensaje</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text"><i class="bi bi-chat"></i></span>
-                                        <textarea class="form-control" id="message" rows="5" placeholder="Describe tu consulta o mensaje aquí..." required></textarea>
+                                    <div class="col-12">
+                                        <label for="message" class="form-label">Mensaje</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text" style="align-items: flex-start; padding-top: 0.875rem;">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                                                </svg>
+                                            </span>
+                                            <textarea class="form-control" id="message" rows="5"
+                                                placeholder="Cuéntanos sobre tu proyecto o consulta..." required></textarea>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">Enviar Consulta</button>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn-submit">
+                                            Enviar Consulta
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left: 0.5rem; vertical-align: middle;">
+                                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                            </svg>
+                                        </button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
-        <!-- SECCIÓN DE CONTACTOS - FIN -->
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-4 mt-5">
-        <div class="container">
-            <p class="mb-0">&copy; 2026 Mi Sitio Web. Todos los derechos reservados.</p>
-            <small>Desarrollado con HTML, CSS, JavaScript y Bootstrap</small>
+    <footer class="text-center py-5">
+        <div class="container px-4">
+            <h4 class="mb-4">Tech<span style="background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Solutions</span></h4>
+            <ul class="footer-links mb-4">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="productos.html">Productos</a></li>
+                <li><a href="contactos.html">Contactos</a></li>
+            </ul>
+            <p class="mb-1">&copy; 2026 <strong>TechSolutions</strong>. Todos los derechos reservados.</p>
+            <p class="mb-0"><small>Desarrollado con HTML, CSS, JavaScript y Bootstrap</small></p>
         </div>
     </footer>
 
@@ -103,5 +582,38 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script src="../src/scripts/script.js"></script>
+
+    <script>
+        // Intersection Observer for animations
+        document.addEventListener('DOMContentLoaded', function () {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (prefersReducedMotion) {
+                fadeElements.forEach(el => el.classList.add('visible'));
+            } else {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry, index) => {
+                        if (entry.isIntersecting) {
+                            setTimeout(() => entry.target.classList.add('visible'), index * 100);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+                fadeElements.forEach(el => observer.observe(el));
+            }
+
+            // Form submit handler (demo)
+            document.getElementById('contactForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                const alert = document.getElementById('successAlert');
+                alert.style.display = 'flex';
+                alert.style.alignItems = 'center';
+                this.reset();
+                setTimeout(() => { alert.style.display = 'none'; }, 5000);
+            });
+        });
+    </script>
 </body>
 </html>
