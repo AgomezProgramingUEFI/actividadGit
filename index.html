@@ -3,18 +3,525 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Sitio Web</title>
+    <title>Inicio - TechSolutions</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="src/styles/style.css">
+    <style>
+        :root {
+            --bg-dark: #0a0e17;
+            --bg-card: #111827;
+            --bg-card-hover: #1a2332;
+            --accent-green: #57C785;
+            --accent-blue: #090979;
+            --accent-cyan: #00D4FF;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border-color: #1e293b;
+            --gradient-main: linear-gradient(135deg, #57C785 0%, #090979 100%, #00D4FF 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(10, 14, 23, 0.95) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text-primary) !important;
+        }
+
+        .navbar-brand span {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
+            color: var(--text-secondary) !important;
+            font-weight: 500;
+            padding: 0.5rem 1.2rem !important;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent-cyan) !important;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-main);
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 60%);
+            pointer-events: none;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.15; }
+            50% { transform: scale(1.1); opacity: 0.25; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(87, 199, 133, 0.1);
+            border: 1px solid rgba(87, 199, 133, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--accent-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title .highlight {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary-custom {
+            background: var(--gradient-main);
+            border: none;
+            padding: 1rem 2.5rem;
+            font-weight: 600;
+            border-radius: 50px;
+            color: white;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(87, 199, 133, 0.3);
+            color: white;
+        }
+
+        .btn-outline-custom {
+            background: transparent;
+            border: 2px solid var(--border-color);
+            padding: 1rem 2.5rem;
+            font-weight: 600;
+            border-radius: 50px;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .btn-outline-custom:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            background: rgba(0, 212, 255, 0.05);
+        }
+
+        /* Floating Elements */
+        .floating-cards {
+            position: relative;
+            height: 500px;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            width: 280px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-card:nth-child(1) {
+            top: 10%;
+            left: 0;
+            animation-delay: 0s;
+        }
+
+        .floating-card:nth-child(2) {
+            top: 40%;
+            right: 0;
+            animation-delay: 2s;
+        }
+
+        .floating-card:nth-child(3) {
+            bottom: 10%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .floating-card-icon.green { background: rgba(87, 199, 133, 0.15); color: var(--accent-green); }
+        .floating-card-icon.blue { background: rgba(9, 9, 121, 0.3); color: #7c7cff; }
+        .floating-card-icon.cyan { background: rgba(0, 212, 255, 0.15); color: var(--accent-cyan); }
+
+        .floating-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .floating-card p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* Services Preview Section */
+        .services-preview {
+            padding: 8rem 0;
+            background: var(--bg-dark);
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-subtitle {
+            color: var(--accent-green);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .service-card-preview {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 2.5rem;
+            height: 100%;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-main);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card-preview:hover {
+            transform: translateY(-10px);
+            border-color: rgba(87, 199, 133, 0.3);
+            background: var(--bg-card-hover);
+        }
+
+        .service-card-preview:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon-preview {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            background: rgba(87, 199, 133, 0.1);
+        }
+
+        .service-icon-preview svg {
+            width: 32px;
+            height: 32px;
+            color: var(--accent-green);
+        }
+
+        .service-card-preview h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card-preview p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-weight: 500;
+            transition: gap 0.3s ease;
+        }
+
+        .service-link:hover {
+            gap: 1rem;
+            color: var(--accent-cyan);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 6rem 0;
+            background: linear-gradient(180deg, #0f172a 0%, var(--bg-dark) 100%);
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-main);
+            opacity: 0.1;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-description {
+            color: var(--text-secondary);
+            font-size: 1.125rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        footer {
+            background: #050810;
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 0;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+        }
+
+        footer strong {
+            color: var(--text-primary);
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .fade-in {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+            .floating-card {
+                animation: none;
+            }
+            @keyframes pulse {
+                0%, 100% { opacity: 0.1; }
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .floating-cards {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                text-align: center;
+            }
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-buttons {
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navegación -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container-fluid px-4">
             <a class="navbar-brand" href="index.html">
-                <strong>Mi Sitio Web</strong>
+                Tech<span>Solutions</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -38,67 +545,199 @@
         </div>
     </nav>
 
-    <!-- Contenido Principal -->
-    <main>
-        <!-- Hero Section -->
-        <section class="hero-section text-white text-center py-5">
-            <div class="container">
-                <h1 class="display-4 fw-bold mb-4">¡Bienvenido a Mi Sitio Web!</h1>
-                <p class="lead mb-4">Descubre nuestros servicios, productos y mucho más</p>
-                <button class="btn btn-primary btn-lg" onclick="mostrarMensaje()">Contáctanos</button>
-            </div>
-        </section>
-
-        <!-- Sección de Características -->
-        <section class="features py-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100 shadow-sm">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">🎯 Misión</h5>
-                                <p class="card-text">Proporcionar soluciones de calidad que superen las expectativas de nuestros clientes.</p>
-                            </div>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container px-4">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="hero-content fade-in">
+                        <div class="hero-badge">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            Innovación tecnológica sin límites
+                        </div>
+                        <h1 class="hero-title">
+                            Transformamos tu visión en <span class="highlight">realidad digital</span>
+                        </h1>
+                        <p class="hero-description">
+                            Somos expertos en desarrollo de software, diseño UX/UI y soluciones cloud. Llevamos tu negocio al siguiente nivel con tecnología de vanguardia.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="public/servicios.html" class="btn btn-primary-custom">Explorar servicios</a>
+                            <a href="public/contactos.html" class="btn btn-outline-custom">Hablar con expertos</a>
                         </div>
                     </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100 shadow-sm">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">👁️ Visión</h5>
-                                <p class="card-text">Ser líderes en innovación y excelencia en la industria.</p>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <div class="floating-cards">
+                        <div class="floating-card">
+                            <div class="floating-card-icon green">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="16 18 22 12 16 6"></polyline>
+                                    <polyline points="8 6 2 12 8 18"></polyline>
+                                </svg>
                             </div>
+                            <h4>Desarrollo Ágil</h4>
+                            <p>Entregas rápidas y de calidad con metodologías modernas.</p>
                         </div>
-                    </div>
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100 shadow-sm">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">⭐ Valores</h5>
-                                <p class="card-text">Integridad, compromiso y dedicación en todo lo que hacemos.</p>
+                        <div class="floating-card">
+                            <div class="floating-card-icon cyan">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+                                </svg>
                             </div>
+                            <h4>Cloud Scalable</h4>
+                            <p>Infraestructura que crece con tu negocio.</p>
+                        </div>
+                        <div class="floating-card">
+                            <div class="floating-card-icon blue">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                            </div>
+                            <h4>Seguridad Total</h4>
+                            <p>Protección de datos con los más altos estándares.</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Sección Call to Action -->
-        <section class="cta-section bg-light py-5">
-            <div class="container text-center">
-                <h2 class="mb-4">¿Listo para comenzar?</h2>
-                <p class="mb-4 lead">Explora nuestros servicios y productos disponibles</p>
-                <div class="btn-group" role="group">
-                    <a href="public/servicios.html" class="btn btn-outline-primary btn-lg">Ver Servicios</a>
-                    <a href="public/productos.html" class="btn btn-outline-success btn-lg">Ver Productos</a>
+    <!-- Services Preview -->
+    <section class="services-preview">
+        <div class="container px-4">
+            <div class="section-header fade-in">
+                <p class="section-subtitle">Lo que hacemos</p>
+                <h2 class="section-title">Servicios especializados</h2>
+                <p class="section-description">
+                    Ofrecemos soluciones integrales para cada desafío tecnológico que enfrentes.
+                </p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 fade-in">
+                    <div class="service-card-preview">
+                        <div class="service-icon-preview">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="16 18 22 12 16 6"></polyline>
+                                <polyline points="8 6 2 12 8 18"></polyline>
+                            </svg>
+                        </div>
+                        <h3>Desarrollo de Software</h3>
+                        <p>Aplicaciones web y móviles personalizadas con las últimas tecnologías del mercado.</p>
+                        <a href="public/servicios.html" class="service-link">
+                            Conocer más
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 fade-in">
+                    <div class="service-card-preview">
+                        <div class="service-icon-preview" style="background: rgba(0, 212, 255, 0.1);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-cyan);">
+                                <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+                            </svg>
+                        </div>
+                        <h3>Cloud y DevOps</h3>
+                        <p>Migración, gestión y optimización de infraestructura en la nube con AWS, Azure y GCP.</p>
+                        <a href="public/servicios.html" class="service-link">
+                            Conocer más
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 fade-in">
+                    <div class="service-card-preview">
+                        <div class="service-icon-preview" style="background: rgba(9, 9, 121, 0.3);">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #7c7cff;">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <h3>Ciberseguridad</h3>
+                        <p>Protección completa de tus activos digitales con auditorías y respuesta a incidentes.</p>
+                        <a href="public/servicios.html" class="service-link">
+                            Conocer más
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container px-4">
+            <div class="row">
+                <div class="col-6 col-lg-3 fade-in">
+                    <div class="stat-card">
+                        <div class="stat-number">150+</div>
+                        <div class="stat-label">Proyectos entregados</div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 fade-in">
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Clientes activos</div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 fade-in">
+                    <div class="stat-card">
+                        <div class="stat-number">8+</div>
+                        <div class="stat-label">Años de experiencia</div>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3 fade-in">
+                    <div class="stat-card">
+                        <div class="stat-number">99%</div>
+                        <div class="stat-label">Satisfacción</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container px-4">
+            <div class="cta-content fade-in">
+                <h2 class="cta-title">Empieza tu transformación digital hoy</h2>
+                <p class="cta-description">
+                    Nuestro equipo de expertos está listo para ayudarte a construir el futuro de tu empresa.
+                </p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="public/contactos.html" class="btn btn-primary-custom">Contactar ahora</a>
+                    <a href="public/productos.html" class="btn btn-outline-custom">Ver productos</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-4 mt-5">
-        <div class="container">
-            <p class="mb-0">&copy; 2026 Mi Sitio Web. Todos los derechos reservados.</p>
-            <small>Desarrollado con HTML, CSS, JavaScript y Bootstrap</small>
+    <footer class="text-center py-5">
+        <div class="container px-4">
+            <h4 class="mb-4">Tech<span style="background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Solutions</span></h4>
+            <ul class="footer-links mb-4">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="public/servicios.html">Servicios</a></li>
+                <li><a href="public/productos.html">Productos</a></li>
+                <li><a href="public/contactos.html">Contactos</a></li>
+            </ul>
+            <p class="mb-1">&copy; 2026 <strong>TechSolutions</strong>. Todos los derechos reservados.</p>
+            <p class="mb-0"><small>Desarrollado con HTML, CSS, JavaScript y Bootstrap</small></p>
         </div>
     </footer>
 
@@ -106,5 +745,31 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script src="src/scripts/script.js"></script>
+    
+    <script>
+        // Intersection Observer for animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            
+            if (prefersReducedMotion) {
+                fadeElements.forEach(el => el.classList.add('visible'));
+                return;
+            }
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, index * 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+            
+            fadeElements.forEach(el => observer.observe(el));
+        });
+    </script>
 </body>
 </html>
